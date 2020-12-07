@@ -1,4 +1,4 @@
-from fileReader import fileReader
+from file_reader import fileReader
 import json
 
 class freezeBatch(object):
