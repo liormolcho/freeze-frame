@@ -1,0 +1,15 @@
+frame:390  pts:390390  pts_time:6.5065
+lavfi.freezedetect.freeze_start=4.5045
+frame:625  pts:625625  pts_time:10.4271
+lavfi.freezedetect.freeze_duration=5.92258
+lavfi.freezedetect.freeze_end=10.4271
+frame:840  pts:840840  pts_time:14.014
+lavfi.freezedetect.freeze_start=12.012
+frame:854  pts:854854  pts_time:14.2476
+lavfi.freezedetect.freeze_duration=2.23557
+lavfi.freezedetect.freeze_end=14.2476
+frame:1200 pts:1201200 pts_time:20.02
+lavfi.freezedetect.freeze_start=18.018
+frame:1522 pts:1523522 pts_time:25.392
+lavfi.freezedetect.freeze_duration=7.37403
+lavfi.freezedetect.freeze_end=25.392
