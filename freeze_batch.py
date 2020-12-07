@@ -26,7 +26,10 @@ class FreezeBatch(object):
 	def get_output(self):
 		return json.dumps(self.output)
 
+def freeze_filter(url_list):
+	fb = FreezeBatch(url_list)
+	return fb.get_output()
+
 if __name__ == '__main__':
      urls = sys.argv[1:]
-     fb = FreezeBatch(urls)
-     print(fb.get_output())
+     print(freeze_filter(urls))
