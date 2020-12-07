@@ -31,7 +31,7 @@ class fileReader(object):
 		t_min_sec = int(t_min) * 60
 		t_s_sec   = float(t_sec)
 
-		total_sec = t_hour_sec + t_min_sec + t_s_sec 
+		total_sec = t_hour_sec + t_min_sec + t_s_sec
 
 		return total_sec
 
@@ -60,5 +60,6 @@ class fileReader(object):
 		file_map["longest_valid_period"] = longest_valid_period
 		file_map["valid_video_percentage"] = sum_valid/self.duration
 		file_map["valid_periods"] = valid_periods
-		print(file_map)
+		f.close()
+		os.remove(self.file_name) 
 		return file_map
