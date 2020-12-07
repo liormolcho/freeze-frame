@@ -1,5 +1,6 @@
 from file_reader import FileReader
 import json
+import sys
 
 class FreezeBatch(object):
 	def __init__(self, arr_urls):
@@ -24,3 +25,8 @@ class FreezeBatch(object):
 
 	def get_output(self):
 		return json.dumps(self.output)
+
+if __name__ == '__main__':
+     urls = sys.argv[1:]
+     fb = FreezeBatch(urls)
+     print(fb.get_output())
