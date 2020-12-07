@@ -10,19 +10,23 @@ _a.mp4' -vf "freezedetect=n=-60dB:d=0.5,metadata=mode=print:file=freeze.txt" -ma
 
 
 
-class fileReader(object):
+class FileReader(object):
 
-	def __init__(self, url, id):
+	def __init__(self, url):
 		self.url = url
-		self.file_name = str(id) +".txt"
-		self.id = id 
+		self.file_name = "tmp.txt"
 		self.duration = self.read_and_filter()
 		self.video_map = self.create_map_from_file()
 
 	def read_and_filter(self):
 		process  = subprocess.Popen(['ffmpeg', '-i', self.url, '-vf', "freezedetect=n=0.003,metadata=mode=print:file="+ self.file_name, '-map', '0:v:0', '-f', 'null', '-'], stderr=subprocess.PIPE)
-		out = process.communicate()
-		matches = re.search(r"Duration:\s{1}(?P<hours>\d+?):(?P<minutes>\d+?):(?P<seconds>\d+\.\d+?),", str(out), re.DOTALL).groupdict()
+		out = str(process.communicate())
+		if ('file or directory' in out or 'HTTP error' in out):
+			raise ValueError("url:" + self.url + " is not valid") 
+		try:
+			matches = re.search(r"Duration:\s{1}(?P<hours>\d+?):(?P<minutes>\d+?):(?P<seconds>\d+\.\d+?),", out, re.DOTALL).groupdict()
+		except:
+			raise ValueError("something went wrong!" + out)
 		t_hour = matches['hours']
 		t_min  = matches['minutes']
 		t_sec  = matches['seconds']
@@ -58,7 +62,7 @@ class fileReader(object):
 		sum_valid += last_valid
 		longest_valid_period = longest_valid_period if longest_valid_period >= last_valid else last_valid
 		file_map["longest_valid_period"] = longest_valid_period
-		file_map["valid_video_percentage"] = sum_valid/self.duration
+		file_map["valid_video_percentage"] = round(sum_valid/self.duration, 2)
 		file_map["valid_periods"] = valid_periods
 		f.close()
 		os.remove(self.file_name) 

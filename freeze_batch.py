@@ -1,9 +1,9 @@
-from file_reader import fileReader
+from file_reader import FileReader
 import json
 
-class freezeBatch(object):
+class FreezeBatch(object):
 	def __init__(self, arr_urls):
-		self.file_readers = [fileReader(url, index) for index, url in enumerate(arr_urls)]
+		self.file_readers = [FileReader(url) for url in arr_urls]
 		self.videos_maps = [reader.video_map for reader in self.file_readers]
 		self.freeze_frame_synced = self.are_synced()
 		self.output = {}
@@ -24,6 +24,3 @@ class freezeBatch(object):
 
 	def get_output(self):
 		return json.dumps(self.output)
-
-fb = freezeBatch(["https://storage.googleapis.com/hiring_process_data/freeze_frame_input_a.mp4", "https://storage.googleapis.com/hiring_process_data/freeze_frame_input_c.mp4"])
-print(fb.get_output())
