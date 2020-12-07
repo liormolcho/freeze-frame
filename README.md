@@ -12,6 +12,7 @@ the returned json will include:
 				valid_periods - list of times between freeze episodes. including between the last freeze and the end of the video.
 
 # requirments
+you need python on your machine.
 you need ffmpeg on your machine.
 i assumed the machine is a nix machine
 
