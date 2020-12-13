@@ -2,12 +2,6 @@ import os
 import subprocess
 import re
 
-'''
-ffmpeg -i 'https://storage.googleapis.com/hiring_process_data/freeze_frame_input
-_a.mp4' -vf "freezedetect=n=-60dB:d=0.5,metadata=mode=print:file=freeze.txt" -map 0:v:0 -f null -
-'''
-
-
 
 
 class FileReader(object):
